@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Introduction · GitBook</title>
+        <title>vim的安装配置 · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -57,8 +57,10 @@
     <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="Centos7.6.html" />
+    <link rel="next" href="yapi教程.html" />
     
+    
+    <link rel="prev" href="vim操作.html" />
     
 
     </head>
@@ -87,7 +89,7 @@
         
         
     
-        <li class="chapter active" data-level="1.1" data-path="./">
+        <li class="chapter " data-level="1.1" data-path="./">
             
                 <a href="./">
             
@@ -243,7 +245,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.13" data-path="./">
+        <li class="chapter " data-level="1.13" data-path="./">
             
                 <a href="./">
             
@@ -308,7 +310,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.18" data-path="vim的安装配置.html">
+        <li class="chapter active" data-level="1.18" data-path="vim的安装配置.html">
             
                 <a href="vim的安装配置.html">
             
@@ -416,7 +418,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="." >Introduction</a>
+        <a href="." >vim的安装配置</a>
     </h1>
 </div>
 
@@ -431,8 +433,88 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <p>add aaa merage</p>
+                                <h3 id="vim&#x5B89;&#x88C5;">vim&#x5B89;&#x88C5;</h3>
+<p>&#x5148;&#x6267;&#x884C;&#x4EE5;&#x4E0B;&#x547D;&#x4EE4;&#x6765;&#x67E5;&#x8BE2; CentOS &#x4E0A;&#x7684; Vim &#x662F;&#x4EC0;&#x4E48;&#x7248;&#x672C;&#xFF1A;</p>
+<pre><code class="lang-bash">rpm -qa|grep vim
+</code></pre>
+<p>&#x5982;&#x679C;&#x53EA;&#x6709;&#x4E00;&#x4E2A; vim-minimal&#xFF0C;&#x90A3;&#x5C31;&#x9700;&#x8981;&#x6211;&#x4EEC;&#x88C5;&#x529F;&#x80FD;&#x66F4;&#x5B8C;&#x5584;&#x7684; Vim&#x4E86;&#x3002;&#x6267;&#x884C;&#x4EE5;&#x4E0B;&#x547D;&#x4EE4;&#x5373;&#x53EF;&#xFF1A;</p>
+<pre><code class="lang-bash">yum -y install vim*
+</code></pre>
+<h4 id="vi&#x6307;&#x5411;">vi&#x6307;&#x5411;</h4>
+<pre><code class="lang-shell"># &#x67E5;&#x8BE2; vi &#x548C; vim &#x547D;&#x4EE4;&#x6307;&#x5411;&#x7684;&#x7A0B;&#x5E8F;
+which vi vim
+# &#x7F16;&#x8F91; bashrc &#x914D;&#x7F6E;&#x6587;&#x4EF6;
+cd ~
+vim .bashrc
+# &#x5728; .bashrc &#x6587;&#x4EF6;&#x91CC;&#x589E;&#x52A0;&#x4E00;&#x6761;&#x547D;&#x4EE4;&#x6307;&#x5411;&#x540E;&#x4FDD;&#x5B58;&#x9000;&#x51FA;
+alias vi=&apos;vim&apos;
+# &#x91CD;&#x542F; bash&#xFF0C;&#x8BA9;&#x521A;&#x624D;&#x7684;&#x914D;&#x7F6E;&#x751F;&#x6548;
+source .bashrc
+# &#x518D;&#x6B21;&#x67E5;&#x8BE2; vi &#x548C; vim &#x7684;&#x6307;&#x5411;&#x786E;&#x8BA4;
+which vi vim
+</code></pre>
+<h4 id="&#x7F16;&#x8F91;vim&#x914D;&#x7F6E;">&#x7F16;&#x8F91;vim&#x914D;&#x7F6E;</h4>
+<p>&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#xFF1A;<code>cd .vimrc</code> </p>
+<pre><code>syntax on
+autocmd InsertLeave * se nocul
+set fileencodings=utf-8,gb2312,gb18030,gbk,ucs-bom,cp936,latin1
+set termencoding=utf-8
+set encoding=utf-8
+set confirm
+set wrap
+set nu
+set autoindent
+set expandtab
+set tabstop=4
+set shiftwidth=4
+set laststatus=2
+set cmdheight=1
+set statusline=%F%m%r%h%w\ [FORMAT=%{&amp;ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ %{strftime(\&quot;%y&#x5E74;%m&#x6708;%d&#x65E5;\ %H:%M\&quot;)}
+set showmatch
+set matchtime=1
+set showcmd
+set nowrapscan
+set ignorecase
+set incsearch
+set hlsearch
+</code></pre><h4 id="&#x8BF4;&#x660E;">&#x8BF4;&#x660E;</h4>
+<pre><code>&quot; &#x5F00;&#x542F;&#x539F;&#x751F;&#x4EE3;&#x7801;&#x9AD8;&#x4EAE;
+syntax on
 
+&quot; &#x8F93;&#x5165;&#x65F6;&#x7684;&#x5F53;&#x524D;&#x884C;&#x72B6;&#x6001;&#x663E;&#x793A;
+autocmd InsertLeave * se nocul
+autocmd InsertEnter * se cul &quot; &#x8F93;&#x5165;&#x65F6;&#x5F53;&#x524D;&#x884C;&#x9AD8;&#x4EAE;
+
+&quot; &#x89E3;&#x51B3;&#x4E2D;&#x6587;&#x4E71;&#x7801;&#x95EE;&#x9898;&#xFF0C;&#x6253;&#x5F00;&#x6587;&#x6863;&#x65F6;&#x9010;&#x4E00;&#x9009;&#x62E9;&#x6D4B;&#x8BD5;&#x6700;&#x7EC8;&#x7F16;&#x7801;
+set fileencodings=utf-8,gb2312,gb18030,gbk,ucs-bom,cp936,latin1
+set termencoding=utf-8 &quot; &#x5176;&#x5B83;&#x7F16;&#x7801;&#x5DE5;&#x5177;&#x6253;&#x5F00;&#x4E5F;&#x4E0D;&#x4F1A;&#x4E22;&#x5931;&#x4E71;&#x7801;
+set encoding=utf-8 &quot; &#x7F16;&#x7801;&#x683C;&#x5F0F;
+
+set confirm &quot; &#x5728;&#x5904;&#x7406;&#x672A;&#x4FDD;&#x5B58;&#x6216;&#x53EA;&#x8BFB;&#x6587;&#x4EF6;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x5F39;&#x51FA;&#x786E;&#x8BA4;&#x9009;&#x62E9;
+set wrap &quot; &#x81EA;&#x52A8;&#x6362;&#x884C;
+set nu &quot; &#x663E;&#x793A;&#x884C;&#x53F7;
+set autoindent &quot; &#x81EA;&#x52A8;&#x5BF9;&#x9F50;
+set expandtab &quot; &#x8F93;&#x5165;Tab&#x81EA;&#x52A8;&#x8F6C;&#x6362;&#x79F0;&#x7A7A;&#x683C;
+set tabstop=4 &quot; &#x8BBE;&#x5B9A;tab&#x957F;&#x5EA6;&#x4E3A;4
+set shiftwidth=4 &quot; &#x8BBE;&#x5B9A;&#x7F29;&#x8FDB;&#x7684;&#x5BBD;&#x5EA6;&#x4E3A;4
+
+&quot; &#x603B;&#x662F;&#x663E;&#x793A;&#x72B6;&#x6001;&#x884C;
+set laststatus=2
+&quot; &#x547D;&#x4EE4;&#x884C;&#xFF08;&#x5728;&#x72B6;&#x6001;&#x884C;&#x4E0B;&#xFF09;&#x7684;&#x9AD8;&#x5EA6;&#xFF0C;&#x9ED8;&#x8BA4;&#x4E3A;1&#xFF0C;&#x8FD9;&#x91CC;&#x662F;2
+set cmdheight=1
+&quot; &#x6211;&#x7684;&#x72B6;&#x6001;&#x884C;&#x663E;&#x793A;&#x7684;&#x5185;&#x5BB9;&#xFF08;&#x5305;&#x62EC;&#x6587;&#x4EF6;&#x7C7B;&#x578B;&#x548C;&#x89E3;&#x7801;&#xFF09;
+set statusline=%F%m%r%h%w\ [FORMAT=%{&amp;ff}]\ [TYPE=%Y]\ [POS=%l,%v][%p%%]\ %{strftime(\&quot;%y&#x5E74;%m&#x6708;%d&#x65E5;\ %H:%M\&quot;)}
+
+set showmatch &quot; &#x9AD8;&#x4EAE;&#x663E;&#x793A;&#x5339;&#x914D;&#x7684;&#x62EC;&#x53F7;
+set matchtime=1 &quot; &#x5339;&#x914D;&#x62EC;&#x53F7;&#x9AD8;&#x4EAE;&#x7684;&#x65F6;&#x95F4;&#xFF08;&#x5355;&#x4F4D;&#x662F;&#x5341;&#x5206;&#x4E4B;&#x4E00;&#x79D2;&#xFF09;
+set nowrapscan &quot; &#x7981;&#x6B62;&#x641C;&#x7D22;&#x5230;&#x6587;&#x4EF6;&#x4E24;&#x7AEF;&#x65F6;&#x91CD;&#x65B0;&#x641C;&#x7D22;
+set showcmd &quot; &#x72B6;&#x6001;&#x680F;&#x663E;&#x793A;&#x76EE;&#x524D;&#x6240;&#x6267;&#x884C;&#x7684;&#x6307;&#x4EE4;
+
+&quot; &#x67E5;&#x627E;&#x65F6;&#x5FFD;&#x7565;&#x5927;&#x5C0F;&#x5199;
+set ignorecase
+set incsearch
+set hlsearch
+</code></pre>
                                 
                                 </section>
                             
@@ -459,8 +541,12 @@
 
             
                 
+                <a href="vim操作.html" class="navigation navigation-prev " aria-label="Previous page: vim操作">
+                    <i class="fa fa-angle-left"></i>
+                </a>
                 
-                <a href="Centos7.6.html" class="navigation navigation-next navigation-unique" aria-label="Next page: Centos7.6">
+                
+                <a href="yapi教程.html" class="navigation navigation-next " aria-label="Next page: yapi教程">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -471,7 +557,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Introduction","level":"1.1","depth":1,"next":{"title":"Centos7.6","level":"1.2","depth":1,"path":"Centos7.6.md","ref":"Centos7.6.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"README.md","mtime":"2019-12-02T03:07:06.122Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-06-19T07:17:46.659Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"vim的安装配置","level":"1.18","depth":1,"next":{"title":"yapi教程","level":"1.19","depth":1,"path":"yapi教程.md","ref":"yapi教程.md","articles":[]},"previous":{"title":"vim操作","level":"1.17","depth":1,"path":"vim操作.md","ref":"vim操作.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"vim的安装配置.md","mtime":"2020-01-13T08:45:25.045Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-06-19T07:17:46.659Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>

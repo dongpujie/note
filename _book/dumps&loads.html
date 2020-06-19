@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Introduction · GitBook</title>
+        <title>dumps&loads · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -57,8 +57,10 @@
     <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="Centos7.6.html" />
+    <link rel="next" href="english.html" />
     
+    
+    <link rel="prev" href="docker安装-windows.html" />
     
 
     </head>
@@ -87,7 +89,7 @@
         
         
     
-        <li class="chapter active" data-level="1.1" data-path="./">
+        <li class="chapter " data-level="1.1" data-path="./">
             
                 <a href="./">
             
@@ -139,7 +141,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.5" data-path="dumps&loads.html">
+        <li class="chapter active" data-level="1.5" data-path="dumps&loads.html">
             
                 <a href="dumps&loads.html">
             
@@ -243,7 +245,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.13" data-path="./">
+        <li class="chapter " data-level="1.13" data-path="./">
             
                 <a href="./">
             
@@ -416,7 +418,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="." >Introduction</a>
+        <a href="." >dumps&loads</a>
     </h1>
 </div>
 
@@ -431,7 +433,48 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <p>add aaa merage</p>
+                                <p>json&#x5E8F;&#x5217;&#x5316;&#x7684;&#x662F;&#x5B57;&#x5178;&#x7C7B;&#x578B;&#x7684;&#x6570;&#x636E;&#x7C7B;&#x578B;&#x3002;</p>
+<p>pickle&#x5E8F;&#x5217;&#x5316;&#x7684;&#x662F;&#x51FD;&#x6570;&#x548C;&#x7C7B;&#x3002;</p>
+<pre><code class="lang-python"><span class="hljs-keyword">import</span> json
+
+
+json.dumps(dict1, ensure_ascii=<span class="hljs-keyword">False</span>)        <span class="hljs-comment"># &#x5C06;&#x5B57;&#x5178;&#x7C7B;&#x578B;&#x7684;&#x6570;&#x636E;&#x5E8F;&#x5217;&#x5316;&#x4E3A;str</span>
+
+json.dump(dict1, f)        <span class="hljs-comment"># &#x5C06;&#x5B57;&#x5178;&#x7C7B;&#x578B;&#x7684;&#x6570;&#x636E;&#x5E8F;&#x5217;&#x5316;&#x4E3A;str&#x5E76;&#x5199;&#x5165;&#x5230;&#x6587;&#x4EF6;&#xFF0C;f&#x4E3A;&#x6587;&#x4EF6;&#x5BF9;&#x8C61;</span>
+</code></pre>
+<p>dump&#x4E0E;dumps&#x7684;&#x533A;&#x522B;&#x5C31;&#x662F;dumps&#x9700;&#x8981;&#x81EA;&#x5DF1;&#x5C06;&#x5E8F;&#x5217;&#x5316;&#x7684;&#x5B57;&#x5178;write&#x5230;&#x6587;&#x4EF6;&#x4E2D;&#xFF0C;&#x800C;dump&#x5185;&#x90E8;&#x5DF2;&#x7ECF;&#x5E2E;&#x6211;&#x4EEC;&#x505A;&#x4E86;&#x8FD9;&#x4E00;&#x6B65;</p>
+<pre><code class="lang-python"><span class="hljs-keyword">import</span> json
+
+
+json.loads(str1)        <span class="hljs-comment"># &#x5C06;&#x6587;&#x672C;&#x4E2D;&#x8BFB;&#x53D6;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#x53CD;&#x5E8F;&#x5217;&#x5316;&#x4E3A;python&#x4E2D;&#x7684;&#x5B57;&#x5178;&#x6570;&#x636E;&#x7C7B;&#x578B;</span>
+
+json.load(f)            <span class="hljs-comment"># &#x5C06;&#x6587;&#x4EF6;&#x5BF9;&#x8C61;&#x76F4;&#x63A5;&#x53CD;&#x5E8F;&#x5217;&#x5316;&#x4E3A;python&#x4E2D;&#x7684;&#x5B57;&#x5178;&#x6570;&#x636E;&#x7C7B;&#x578B;</span>
+</code></pre>
+<p>load&#x4E0E;loads&#x7684;&#x533A;&#x522B;&#x5C31;&#x662F;loads&#x9700;&#x8981;&#x81EA;&#x5DF1;&#x5C06;&#x6587;&#x4EF6;&#x4E2D;&#x7684;&#x4FE1;&#x606F;&#x53CD;&#x5E8F;&#x5217;&#x5316;&#x5230;&#x5185;&#x5B58;&#x4E2D;&#x518D;read&#xFF0C;&#x800C;load&#x5185;&#x90E8;&#x5DF2;&#x7ECF;&#x5E2E;&#x6211;&#x4EEC;&#x505A;&#x4E86;&#x8FD9;&#x4E00;&#x6B65;</p>
+<pre><code class="lang-python"><span class="hljs-keyword">import</span> pickle 
+
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">foo</span><span class="hljs-params">()</span>:</span> print(<span class="hljs-string">&apos;ok&apos;</span>)
+
+data = pickle.dumps(foo)    <span class="hljs-comment"># &#x5C06;&#x51FD;&#x6570;&#x6216;&#x8005;&#x7C7B;&#x5BF9;&#x8C61;&#x5E8F;&#x5217;&#x5316;&#x4E3A;&#x53EF;&#x5199;&#x5165;&#x6587;&#x4EF6;&#x7684;&#x4E8C;&#x8FDB;&#x5236;</span>
+f = open(<span class="hljs-string">&apos;pickle_text&apos;</span>, <span class="hljs-string">&apos;wb&apos;</span>)
+f.write(data)
+
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">foo</span><span class="hljs-params">()</span>:</span> <span class="hljs-keyword">pass</span>
+f = open(<span class="hljs-string">&apos;PICKLE_text&apos;</span>,<span class="hljs-string">&apos;rb&apos;</span>)
+data = f.read()
+data = pickle.loads(data)    <span class="hljs-comment"># &#x9700;&#x8981;&#x4E0A;&#x9762;&#x6DFB;&#x52A0;foo()&#x51FD;&#x6570;&#x624D;&#x4E0D;&#x4F1A;&#x62A5;&#x9519;&#xFF0C;&#x56E0;&#x4E3A;&#x53CD;&#x5E8F;&#x5217;&#x5316;&#x4E4B;&#x540E;&#xFF0C;foo&#x7684;&#x5F15;&#x7528;&#x5730;&#x5740;&#x4F1A;&#x627E;&#x4E0D;&#x5230;foo&#x51FD;&#x6570;&#xFF0C;&#x9700;&#x8981;&#x91CD;&#x65B0;&#x52A0;&#x8F7D;</span>
+</code></pre>
+<p>shelve&#x6A21;&#x5757;</p>
+<p>shelve&#x6A21;&#x5757;&#x6BD4;pickle&#x6A21;&#x5757;&#x7B80;&#x5355;&#xFF0C;&#x53EA;&#x6709;&#x4E00;&#x4E2A;open&#x51FD;&#x6570;&#xFF0C;&#x8FD4;&#x56DE;&#x7C7B;&#x4F3C;&#x4E8E;&#x5B57;&#x5178;&#x7684;&#x5BF9;&#x8C61;&#xFF0C;&#x53EF;&#x8BFB;&#x53EF;&#x5199;&#xFF1A;key&#x5FC5;&#x987B;&#x4E3A;&#x5B57;&#x7B26;&#x4E32;&#xFF0C;&#x800C;&#x503C;&#x53EF;&#x4EE5;&#x662F;python&#x6240;&#x652F;&#x6301;&#x7684;&#x6570;&#x636E;&#x7C7B;&#x578B;</p>
+<pre><code class="lang-python"><span class="hljs-keyword">import</span> shelve
+f = shelve.open(<span class="hljs-string">r&apos;SHELVE_text.txt&apos;</span>)
+f[<span class="hljs-string">&apos;info&apos;</span>] = {<span class="hljs-string">&apos;name&apos;</span>:<span class="hljs-string">&apos;ljj&apos;</span>,<span class="hljs-string">&apos;age&apos;</span>:<span class="hljs-number">18</span>}
+f[<span class="hljs-string">&apos;shopping&apos;</span>] = {<span class="hljs-string">&apos;name&apos;</span>:<span class="hljs-string">&apos;&#x624B;&#x673A;&apos;</span>,<span class="hljs-string">&apos;price&apos;</span>:<span class="hljs-number">1000</span>}
+data = f.get(<span class="hljs-string">&apos;shopping&apos;</span>)
+print(data)
+</code></pre>
 
                                 
                                 </section>
@@ -459,8 +502,12 @@
 
             
                 
+                <a href="docker安装-windows.html" class="navigation navigation-prev " aria-label="Previous page: docker安装(windows)">
+                    <i class="fa fa-angle-left"></i>
+                </a>
                 
-                <a href="Centos7.6.html" class="navigation navigation-next navigation-unique" aria-label="Next page: Centos7.6">
+                
+                <a href="english.html" class="navigation navigation-next " aria-label="Next page: english">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -471,7 +518,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Introduction","level":"1.1","depth":1,"next":{"title":"Centos7.6","level":"1.2","depth":1,"path":"Centos7.6.md","ref":"Centos7.6.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"README.md","mtime":"2019-12-02T03:07:06.122Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-06-19T07:17:46.659Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"dumps&loads","level":"1.5","depth":1,"next":{"title":"english","level":"1.6","depth":1,"path":"english.md","ref":"english.md","articles":[]},"previous":{"title":"docker安装(windows)","level":"1.4","depth":1,"path":"docker安装-windows.md","ref":"docker安装-windows.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"dumps&loads.md","mtime":"2019-11-14T06:43:12.636Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-06-19T07:17:46.659Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>

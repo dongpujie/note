@@ -2,7 +2,6 @@
 
 * [Introduction](README.md)
 * [Centos7.6](Centos7.6.md)
-* [django](django.md)
 * [docker(linux)](docker-linux.md)
 * [docker安装(windows)](docker安装-windows.md)
 * [dumps&loads](dumps&loads.md)

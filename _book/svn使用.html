@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Introduction · GitBook</title>
+        <title>svn使用 · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -57,8 +57,10 @@
     <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="Centos7.6.html" />
+    <link rel="next" href="vim操作.html" />
     
+    
+    <link rel="prev" href="SUMMARY.html" />
     
 
     </head>
@@ -87,7 +89,7 @@
         
         
     
-        <li class="chapter active" data-level="1.1" data-path="./">
+        <li class="chapter " data-level="1.1" data-path="./">
             
                 <a href="./">
             
@@ -243,7 +245,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.13" data-path="./">
+        <li class="chapter " data-level="1.13" data-path="./">
             
                 <a href="./">
             
@@ -282,7 +284,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.16" data-path="svn使用.html">
+        <li class="chapter active" data-level="1.16" data-path="svn使用.html">
             
                 <a href="svn使用.html">
             
@@ -416,7 +418,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="." >Introduction</a>
+        <a href="." >svn使用</a>
     </h1>
 </div>
 
@@ -431,7 +433,115 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <p>add aaa merage</p>
+                                <h2 id="&#x670D;&#x52A1;&#x7AEF;&#x4E0E;&#x5BA2;&#x6237;&#x7AEF;&#x547D;&#x4EE4;">&#x670D;&#x52A1;&#x7AEF;&#x4E0E;&#x5BA2;&#x6237;&#x7AEF;&#x547D;&#x4EE4;</h2>
+<h3 id="&#x670D;&#x52A1;&#x7AEF;&#x547D;&#x4EE4;">&#x670D;&#x52A1;&#x7AEF;&#x547D;&#x4EE4;</h3>
+<p>svnserver  ---- &#x63A7;&#x5236;svn&#x7CFB;&#x7EDF;&#x670D;&#x52A1;&#x7684;&#x542F;&#x52A8;&#x7B49;</p>
+<p>svnadmin  ----  &#x7248;&#x672C;&#x5E93;&#x7684;&#x521B;&#x5EFA;/&#x5BFC;&#x51FA;/&#x5BFC;&#x5165;/&#x5220;&#x9664;&#x7B49;</p>
+<p>svnlook   ----   &#x67E5;&#x770B;&#x7248;&#x672C;&#x5E93;&#x7684;&#x4FE1;&#x606F;&#x7B49;</p>
+<h3 id="&#x5BA2;&#x6237;&#x7AEF;&#x547D;&#x4EE4;">&#x5BA2;&#x6237;&#x7AEF;&#x547D;&#x4EE4;</h3>
+<p>svn  ----   &#x7248;&#x672C;&#x5E93;&#x7684;&#x68C0;&#x51FA;/&#x66F4;&#x65B0;/&#x63D0;&#x4EA4;/&#x91CD;&#x5B9A;&#x5411;&#x7B49;</p>
+<h2 id="&#x7248;&#x672C;&#x5E93;&#x7684;&#x521B;&#x5EFA;&#x4E0E;&#x5220;&#x9664;">&#x7248;&#x672C;&#x5E93;&#x7684;&#x521B;&#x5EFA;&#x4E0E;&#x5220;&#x9664;</h2>
+<h3 id="&#x521B;&#x5EFA;&#x7248;&#x672C;&#x5E93;">&#x521B;&#x5EFA;&#x7248;&#x672C;&#x5E93;</h3>
+<pre><code class="lang-shell">svnadmin create /path/repos
+# &#x4F8B;&#xFF1A;
+# &#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x653E;&#x7F6E;&#x7248;&#x672C;&#x5E93;&#x7684;&#x6587;&#x4EF6;&#x5939;
+mkdir /svnroot
+# &#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x540D;&#x4E3A;imooc&#x7684;&#x7248;&#x672C;&#x5E93;  &#x7EDD;&#x5BF9;&#x8DEF;&#x5F84;&#x65B9;&#x5F0F;&#xFF0C;&#x4E5F;&#x53EF;&#x4F7F;&#x7528;&#x76F8;&#x5BF9;&#x8DEF;&#x5F84;&#x65B9;&#x5F0F;
+svnadmin create --fs-type fsfs /svnroot/imooc # &#x5176;&#x4E2D;fsfs&#x662F;&#x6570;&#x636E;&#x4FDD;&#x5B58;&#x7C7B;&#x578B;&#xFF0C;&#x8FD8;&#x6709;&#x4E00;&#x79CD;dbd&#xFF0C;&#x63A8;&#x8350;fsfs
+</code></pre>
+<h3 id="&#x5220;&#x9664;&#x7248;&#x672C;&#x5E93;">&#x5220;&#x9664;&#x7248;&#x672C;&#x5E93;</h3>
+<pre><code class="lang-shell">rm -rvf /path/repos
+</code></pre>
+<h2 id="&#x7248;&#x672C;&#x5E93;&#x914D;&#x7F6E;&#x53CA;&#x6743;&#x9650;&#x5206;&#x7EC4;">&#x7248;&#x672C;&#x5E93;&#x914D;&#x7F6E;&#x53CA;&#x6743;&#x9650;&#x5206;&#x7EC4;</h2>
+<p>&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x4F4D;&#x4E8E; /path/repos/conf/</p>
+<p><img src="image/image-20191225145451714.png" alt="image-20191225145451714"></p>
+<ul>
+<li>authz  ----   &#x914D;&#x7F6E;&#x7528;&#x6237;&#x7EC4;&#x4EE5;&#x53CA;&#x7528;&#x6237;&#x7EC4;&#x6743;&#x9650;</li>
+<li>passwd  ----  &#x914D;&#x7F6E;&#x7528;&#x6237;&#x540D;&#x548C;&#x5BC6;&#x7801;</li>
+<li>svnserve.conf  ----  &#x914D;&#x7F6E;&#x9ED8;&#x8BA4;&#x6743;&#x9650;&#x3001;&#x6743;&#x9650;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x53CA;&#x5BC6;&#x7801;&#x914D;&#x7F6E;&#x6587;&#x4EF6;</li>
+</ul>
+<h3 id="svnserveconf">svnserve.conf</h3>
+<pre><code class="lang-shell"># &#x6CA1;&#x6709;&#x8D26;&#x53F7;&#x5BC6;&#x7801;&#x7684;&#x7528;&#x6237;&#x7684;&#x6743;&#x9650;    &#x5176;&#x4E2D;read&#x4E3A;&#x53EF;&#x4EE5;&#x4ECE;&#x670D;&#x52A1;&#x5668;&#x62C9;&#x53D6;&#x6587;&#x4EF6;&#xFF0C;write&#x4E3A;&#x53EF;&#x4EE5;&#x63D0;&#x4EA4;&#x6587;&#x4EF6;&#x5230;&#x670D;&#x52A1;&#x5668;&#xFF0C;none&#x6CA1;&#x6709;&#x6743;&#x9650;
+anon-access = read
+# &#x6709;&#x8D26;&#x53F7;&#x5BC6;&#x7801;&#x7684;&#x7528;&#x6237;&#x7684;&#x6743;&#x9650;    
+auth-access = write
+
+# &#x7528;&#x6237;&#x540D;&#x53CA;&#x5BC6;&#x7801;&#x914D;&#x7F6E;&#x7684;&#x6587;&#x4EF6;&#x8DEF;&#x5F84;&#xFF0C;&#x652F;&#x6301;&#x76F8;&#x5BF9;&#x3001;&#x7EDD;&#x5BF9;&#x8DEF;&#x5F84;
+password-db = passwd    # &#x8FD9;&#x4E2A;&#x6587;&#x4EF6;&#x5FC5;&#x987B;&#x5177;&#x6709;&#x53EF;&#x8BFB;&#x5199;&#x7684;&#x6743;&#x9650;
+
+# &#x6743;&#x9650;&#x5206;&#x7EC4;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x7684;&#x8DEF;&#x5F84;&#xFF0C;&#x652F;&#x6301;&#x76F8;&#x5BF9;&#x3001;&#x7EDD;&#x5BF9;&#x8DEF;&#x5F84;
+authz-db = authz        # &#x8FD9;&#x4E2A;&#x6587;&#x4EF6;&#x5FC5;&#x987B;&#x5177;&#x6709;&#x53EF;&#x8BFB;&#x5199;&#x7684;&#x6743;&#x9650;
+</code></pre>
+<h3 id="passwd">passwd</h3>
+<pre><code class="lang-shell"># &#x914D;&#x7F6E;  &#x7528;&#x6237;&#x540D;=&#x5BC6;&#x7801;
+[users]
+# harry = harryssecret
+# sally = sallyssecret
+imooc = 123456
+imooc2 = 123456
+imooc3 = 123456
+imooc4 = 123456
+</code></pre>
+<h3 id="authz">authz</h3>
+<pre><code class="lang-shell"># &#x522B;&#x540D;&#x914D;&#x7F6E;
+[aliases]
+# joe = /C=XZ/ST=Dessert/L=Snake City/O=Snake Oil, Ltd./OU=Research Institute/CN=Joe Average
+
+# &#x7528;&#x6237;&#x7EC4;&#x914D;&#x7F6E;        &#x7EC4;&#x540D;=&#x7528;&#x6237;&#x540D;&#x5217;&#x8868;&#xFF0C;&#x6BCF;&#x4E2A;&#x7528;&#x6237;&#x540D;&#x4F7F;&#x7528;`,`&#x9694;&#x5F00;&#xFF0C;&#x4E00;&#x884C;&#x8868;&#x793A;&#x4E00;&#x4E2A;&#x7528;&#x6237;&#x7EC4;
+[groups]
+pm = imooc
+dev = imooc2,imooc3
+rookie = imooc4
+
+# &#x8868;&#x793A;&#x6743;&#x9650; &#x9002;&#x7528;&#x4E3A;&#x6240;&#x6709;&#x7684;&#x7248;&#x672C;&#x5E93;
+[/]
+@pm = rw
+@dev = r
+@rookie = r
+
+# &#x8868;&#x793A;&#x6743;&#x9650; &#x53EA;&#x9002;&#x7528;&#x4E3A;imooc&#x7684;&#x7248;&#x672C;&#x5E93;
+[imooc:/]
+@pm = rw
+imooc2 = rw
+imooc3 = rw
+imooc4 = 
+
+# &#x6743;&#x9650; &#x6307;&#x5B9A;&#x66F4;&#x8BE6;&#x7EC6;&#x7684;&#x8DEF;&#x5F84;&#x5206;&#x914D;
+[repos:/xxx]
+* = r
+</code></pre>
+<h2 id="svn&#x7248;&#x672C;&#x5E93;&#x8BBF;&#x95EE;">svn&#x7248;&#x672C;&#x5E93;&#x8BBF;&#x95EE;</h2>
+<h3 id="&#x8FD0;&#x884C;svn&#x670D;&#x52A1;">&#x8FD0;&#x884C;svn&#x670D;&#x52A1;</h3>
+<pre><code class="lang-shell">svnserve -d -r /svnroot/imooc/
+</code></pre>
+<h3 id="svn&#x7248;&#x672C;&#x5E93;&#x8BBF;&#x95EE;">svn&#x7248;&#x672C;&#x5E93;&#x8BBF;&#x95EE;</h3>
+<h4 id="linux">Linux</h4>
+<pre><code class="lang-shell">mkdir svntest
+cd svntest
+svn checkout    #&#x7B49;&#x4E8E; svn co
+svn co svn://192.168.0.130 --username imooc --password 123456    # &#x53EF;&#x4EE5;&#x5199;&#x4E0A;&#x7528;&#x6237;&#x540D;&#x5BC6;&#x7801;
+</code></pre>
+<h4 id="windows">windows</h4>
+<p>&#x5C0F;&#x4E4C;&#x9F9F;</p>
+<h2 id="svn&#x670D;&#x52A1;&#x81EA;&#x542F;&#x52A8;">svn&#x670D;&#x52A1;&#x81EA;&#x542F;&#x52A8;</h2>
+<p>&#x7CFB;&#x7EDF;&#x542F;&#x52A8;&#x7EA7;&#x522B;</p>
+<p>/etc/rc.local     &#x7CFB;&#x7EDF;&#x542F;&#x52A8;&#x4E4B;&#x540E;&#x81EA;&#x52A8;&#x8FD0;&#x884C;&#x4E00;&#x6B21;&#xFF0C;&#x7ED1;&#x5B9A;&#x4E86;&#x6240;&#x6709;&#x81EA;&#x542F;&#x52A8;&#x8F6F;&#x4EF6;</p>
+<p>&#x5728; exit 0 &#x524D;&#x6DFB;&#x52A0;&#x811A;&#x672C;</p>
+<pre><code class="lang-shell">svnserve -d -r /svnroot/imooc/
+</code></pre>
+<p><a href="https://www.cnblogs.com/airdot/p/9688530.html" target="_blank">https://www.cnblogs.com/airdot/p/9688530.html</a></p>
+<h2 id="svn&#x672F;&#x8BED;&#x4E0E;&#x6587;&#x4EF6;&#x72B6;&#x6001;">svn&#x672F;&#x8BED;&#x4E0E;&#x6587;&#x4EF6;&#x72B6;&#x6001;</h2>
+<h3 id="&#x5E38;&#x89C1;&#x672F;&#x8BED;">&#x5E38;&#x89C1;&#x672F;&#x8BED;</h3>
+<p>&#x7248;&#x672C;&#x5E93;&#x3001;&#x68C0;&#x51FA;&#x3001;&#x5DE5;&#x4F5C;&#x526F;&#x672C;&#x3001;&#x66F4;&#x65B0;&#x3001;&#x63D0;&#x4EA4;&#x3001;&#x7248;&#x672C;&#x3001;&#x7248;&#x672C;&#x53F7;</p>
+<h3 id="&#x6587;&#x4EF6;&#x72B6;&#x6001;">&#x6587;&#x4EF6;&#x72B6;&#x6001;</h3>
+<p>&#x65E0;&#x7248;&#x672C;&#x63A7;&#x5236;&#x3001;&#x589E;&#x52A0;&#x3001;&#x4FEE;&#x6539;&#x3001;&#x5E38;&#x89C4;&#x3001;&#x51B2;&#x7A81;&#x3001;&#x5220;&#x9664;&#x3001;&#x9501;&#x5B9A;</p>
+<h2 id="checkout&#x4E0E;export">checkout&#x4E0E;export</h2>
+<p>checkout - &#x68C0;&#x51FA;        &#x6709; .svn &#x6587;&#x4EF6;</p>
+<p>export - &#x5BFC;&#x51FA;        &#x8131;&#x79BB;&#x7248;&#x672C;&#x63A7;&#x5236;</p>
+<pre><code>svn checkout -r 2  // &#x68C0;&#x51FA;&#x7248;&#x672C;2
+svn export -r 3      // &#x68C0;&#x51FA;&#x7248;&#x672C;3
+</code></pre><p>.svn &#x8BB0;&#x5F55;&#x7740;&#x5DE5;&#x4F5C;&#x526F;&#x672C; <strong>&#x6700;&#x540E;&#x4E00;&#x6B21;&#x66F4;&#x65B0;</strong> &#x540E;&#x7684;&#x6587;&#x4EF6;&#x72B6;&#x6001;</p>
+<p>.svn &#x6807;&#x8BB0;&#x5DE5;&#x4F5C;&#x526F;&#x672C;&#x7684;&#x4E00;&#x5207;&#x53D8;&#x5316;</p>
 
                                 
                                 </section>
@@ -459,8 +569,12 @@
 
             
                 
+                <a href="SUMMARY.html" class="navigation navigation-prev " aria-label="Previous page: SUMMARY">
+                    <i class="fa fa-angle-left"></i>
+                </a>
                 
-                <a href="Centos7.6.html" class="navigation navigation-next navigation-unique" aria-label="Next page: Centos7.6">
+                
+                <a href="vim操作.html" class="navigation navigation-next " aria-label="Next page: vim操作">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -471,7 +585,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Introduction","level":"1.1","depth":1,"next":{"title":"Centos7.6","level":"1.2","depth":1,"path":"Centos7.6.md","ref":"Centos7.6.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"README.md","mtime":"2019-12-02T03:07:06.122Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-06-19T07:17:46.659Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"svn使用","level":"1.16","depth":1,"next":{"title":"vim操作","level":"1.17","depth":1,"path":"vim操作.md","ref":"vim操作.md","articles":[]},"previous":{"title":"SUMMARY","level":"1.15","depth":1,"path":"SUMMARY.md","ref":"SUMMARY.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"svn使用.md","mtime":"2020-01-02T01:46:13.959Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-06-19T07:17:46.659Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>

@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Introduction · GitBook</title>
+        <title>selenium代理 · GitBook</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -57,8 +57,10 @@
     <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="Centos7.6.html" />
+    <link rel="next" href="SUMMARY.html" />
     
+    
+    <link rel="prev" href="./" />
     
 
     </head>
@@ -87,7 +89,7 @@
         
         
     
-        <li class="chapter active" data-level="1.1" data-path="./">
+        <li class="chapter " data-level="1.1" data-path="./">
             
                 <a href="./">
             
@@ -243,7 +245,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="1.13" data-path="./">
+        <li class="chapter " data-level="1.13" data-path="./">
             
                 <a href="./">
             
@@ -256,7 +258,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.14" data-path="selenium代理.html">
+        <li class="chapter active" data-level="1.14" data-path="selenium代理.html">
             
                 <a href="selenium代理.html">
             
@@ -416,7 +418,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="." >Introduction</a>
+        <a href="." >selenium代理</a>
     </h1>
 </div>
 
@@ -431,7 +433,79 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <p>add aaa merage</p>
+                                <p>selenium &#x8BBE;&#x7F6E;&#x65E0;&#x754C;&#x9762;&#x6D4F;&#x89C8;&#xFF0C;&#x8BBE;&#x7F6E;&#x4EE3;&#x7406;</p>
+<pre><code class="lang-python">
+<span class="hljs-keyword">from</span> selenium <span class="hljs-keyword">import</span> webdriver
+<span class="hljs-keyword">from</span> selenium.webdriver.chrome.options <span class="hljs-keyword">import</span> Options
+
+chromeOptions = Options()
+
+<span class="hljs-comment"># &#x8BBE;&#x7F6E;&#x65E0;&#x6D4F;&#x89C8;&#x5668;&#x754C;&#x9762;</span>
+chromeOptions.add_argument(<span class="hljs-string">&apos;--headless&apos;</span>)
+chromeOptions.add_argument(<span class="hljs-string">&apos;--disable-gpu&apos;</span>)
+
+<span class="hljs-comment"># &#x8BBE;&#x7F6E;ua</span>
+chromeOptions.add_argument(<span class="hljs-string">&apos;User-Agent=%s&apos;</span>%user_agent)
+
+<span class="hljs-comment"># &#x8BBE;&#x7F6E;&#x4EE3;&#x7406;</span>
+chromeOptions.add_argument(<span class="hljs-string">&quot;--proxy-server=http://58.218.92.94:2874&quot;</span>)
+<span class="hljs-comment"># &#x4E00;&#x5B9A;&#x8981;&#x6CE8;&#x610F;&#xFF0C;=&#x4E24;&#x8FB9;&#x4E0D;&#x80FD;&#x6709;&#x7A7A;&#x683C;&#xFF0C;&#x4E0D;&#x80FD;&#x662F;&#x8FD9;&#x6837;--proxy-server = http://202.20.16.82:10152</span>
+browser = webdriver.Chrome(chrome_options = chromeOptions)
+
+<span class="hljs-comment"># &#x67E5;&#x770B;&#x672C;&#x673A;ip&#xFF0C;&#x67E5;&#x770B;&#x4EE3;&#x7406;&#x662F;&#x5426;&#x8D77;&#x4F5C;&#x7528;</span>
+browser.get(<span class="hljs-string">&quot;http://httpbin.org/get&quot;</span>)
+print(browser.page_source)
+
+<span class="hljs-comment"># &#x9000;&#x51FA;&#xFF0C;&#x6E05;&#x9664;&#x6D4F;&#x89C8;&#x5668;&#x7F13;&#x5B58;</span>
+browser.quit()
+</code></pre>
+<p>&#x5E38;&#x7528;&#x53C2;&#x6570;&#x914D;&#x7F6E;</p>
+<pre><code class="lang-python"><span class="hljs-keyword">from</span> selenium <span class="hljs-keyword">import</span> webdriver
+option = webdriver.ChromeOptions()
+
+<span class="hljs-comment"># &#x6DFB;&#x52A0;UA</span>
+options.add_argument(<span class="hljs-string">&apos;user-agent=&quot;MQQBrowser/26 Mozilla/5.0 (Linux; U; Android 2.3.7; zh-cn; MB200 Build/GRJ22; CyanogenMod-7) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1&quot;&apos;</span>)
+
+<span class="hljs-comment"># &#x6307;&#x5B9A;&#x6D4F;&#x89C8;&#x5668;&#x5206;&#x8FA8;&#x7387;</span>
+options.add_argument(<span class="hljs-string">&apos;window-size=1920x3000&apos;</span>) 
+
+<span class="hljs-comment"># &#x8C37;&#x6B4C;&#x6587;&#x6863;&#x63D0;&#x5230;&#x9700;&#x8981;&#x52A0;&#x4E0A;&#x8FD9;&#x4E2A;&#x5C5E;&#x6027;&#x6765;&#x89C4;&#x907F;bug</span>
+chrome_options.add_argument(<span class="hljs-string">&apos;--disable-gpu&apos;</span>) 
+
+ <span class="hljs-comment"># &#x9690;&#x85CF;&#x6EDA;&#x52A8;&#x6761;, &#x5E94;&#x5BF9;&#x4E00;&#x4E9B;&#x7279;&#x6B8A;&#x9875;&#x9762;</span>
+options.add_argument(<span class="hljs-string">&apos;--hide-scrollbars&apos;</span>)
+
+<span class="hljs-comment"># &#x4E0D;&#x52A0;&#x8F7D;&#x56FE;&#x7247;, &#x63D0;&#x5347;&#x901F;&#x5EA6;</span>
+options.add_argument(<span class="hljs-string">&apos;blink-settings=imagesEnabled=false&apos;</span>) 
+
+<span class="hljs-comment"># &#x6D4F;&#x89C8;&#x5668;&#x4E0D;&#x63D0;&#x4F9B;&#x53EF;&#x89C6;&#x5316;&#x9875;&#x9762;. linux&#x4E0B;&#x5982;&#x679C;&#x7CFB;&#x7EDF;&#x4E0D;&#x652F;&#x6301;&#x53EF;&#x89C6;&#x5316;&#x4E0D;&#x52A0;&#x8FD9;&#x6761;&#x4F1A;&#x542F;&#x52A8;&#x5931;&#x8D25;</span>
+options.add_argument(<span class="hljs-string">&apos;--headless&apos;</span>) 
+
+<span class="hljs-comment"># &#x4EE5;&#x6700;&#x9AD8;&#x6743;&#x9650;&#x8FD0;&#x884C;</span>
+options.add_argument(<span class="hljs-string">&apos;--no-sandbox&apos;</span>)
+
+<span class="hljs-comment"># &#x624B;&#x52A8;&#x6307;&#x5B9A;&#x4F7F;&#x7528;&#x7684;&#x6D4F;&#x89C8;&#x5668;&#x4F4D;&#x7F6E;</span>
+options.binary_location = <span class="hljs-string">r&quot;C:\Program Files (x86)\Google\Chrome\Application\chrome.exe&quot;</span> 
+
+<span class="hljs-comment">#&#x6DFB;&#x52A0;crx&#x63D2;&#x4EF6;</span>
+option.add_extension(<span class="hljs-string">&apos;d:\crx\AdBlock_v2.17.crx&apos;</span>) 
+
+<span class="hljs-comment"># &#x7981;&#x7528;JavaScript</span>
+option.add_argument(<span class="hljs-string">&quot;--disable-javascript&quot;</span>) 
+
+<span class="hljs-comment"># &#x8BBE;&#x7F6E;&#x5F00;&#x53D1;&#x8005;&#x6A21;&#x5F0F;&#x542F;&#x52A8;&#xFF0C;&#x8BE5;&#x6A21;&#x5F0F;&#x4E0B;webdriver&#x5C5E;&#x6027;&#x4E3A;&#x6B63;&#x5E38;&#x503C;</span>
+options.add_experimental_option(<span class="hljs-string">&apos;excludeSwitches&apos;</span>, [<span class="hljs-string">&apos;enable-automation&apos;</span>]) 
+
+<span class="hljs-comment"># &#x7981;&#x7528;&#x6D4F;&#x89C8;&#x5668;&#x5F39;&#x7A97;</span>
+prefs = {  
+    <span class="hljs-string">&apos;profile.default_content_setting_values&apos;</span> :  {  
+        <span class="hljs-string">&apos;notifications&apos;</span> : <span class="hljs-number">2</span>  
+     }  
+}  
+options.add_experimental_option(<span class="hljs-string">&apos;prefs&apos;</span>,prefs)
+
+driver=webdriver.Chrome(chrome_options=chrome_options)
+</code></pre>
 
                                 
                                 </section>
@@ -459,8 +533,12 @@
 
             
                 
+                <a href="./" class="navigation navigation-prev " aria-label="Previous page: README">
+                    <i class="fa fa-angle-left"></i>
+                </a>
                 
-                <a href="Centos7.6.html" class="navigation navigation-next navigation-unique" aria-label="Next page: Centos7.6">
+                
+                <a href="SUMMARY.html" class="navigation navigation-next " aria-label="Next page: SUMMARY">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -471,7 +549,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Introduction","level":"1.1","depth":1,"next":{"title":"Centos7.6","level":"1.2","depth":1,"path":"Centos7.6.md","ref":"Centos7.6.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"README.md","mtime":"2019-12-02T03:07:06.122Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-06-19T07:17:46.659Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"selenium代理","level":"1.14","depth":1,"next":{"title":"SUMMARY","level":"1.15","depth":1,"path":"SUMMARY.md","ref":"SUMMARY.md","articles":[]},"previous":{"title":"README","level":"1.13","depth":1,"path":"README.md","ref":"README.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":[],"pluginsConfig":{"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"selenium代理.md","mtime":"2019-11-19T08:48:19.411Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-06-19T07:17:46.659Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>
