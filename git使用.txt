@@ -75,7 +75,7 @@ git push -u origin master
 
 ```shell
 git add .
-git commit
+git commit -m ""
 ```
 
 

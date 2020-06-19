@@ -371,7 +371,7 @@ harry 和 sally 这两行分别定义了可以对 repo 进行写入的用户的�
 
 ```shell
 # --listen -port 端口
-svnserve -d -r /home/svn/ --listen-port 21
+svnserve -d -r /home/svn/ --listen-port 21   # 不要加端口，之前ftp也用了21端口。 可能发生了冲突， 但是查看所有端口并不能发下21端口被占用，奇怪的问题
 
 ```
 
@@ -1016,6 +1016,163 @@ mysql 5.7的配置文件路径在：`/etc/mysql/mysql.conf.d/mysqld.cnf`，当�
 sudo service mysql restart
 ```
 
+#### 5. centos安装mysql
+
+https://www.jianshu.com/p/1dab9a4d0d5f
+
+##### 安装 mysql 源
+
+```shell
+# 下载
+shell> wget https://dev.mysql.com/get/mysql57-community-release-el7-11.noarch.rpm
+# 安装 mysql 源
+shell> yum localinstall mysql57-community-release-el7-11.noarch.rpm
+```
+
+用下面的命令检查 mysql 源是否安装成功
+
+```shell
+shell> yum repolist enabled | grep "mysql.*-community.*"
+```
+
+##### 安装 MySQL
+
+使用 yum install 命令安装
+
+```undefined
+shell> yum install -y mysql-community-server
+```
+
+##### 查看Mysql
+
+```shell
+# 启动MySQL
+systemctl start mysqld
+# 查看 MySQL 状态
+systemctl status mysqld
+# 重启MySQL
+systemctl restart mysqld
+```
+
+##### 设置开机启动
+
+```shell
+shell> systemctl enable mysqld
+# 重载所有修改过的配置文件
+shell> systemctl daemon-reload
+```
+
+##### 修改 root 本地账户密码
+
+mysql 安装完成之后，生成的默认密码在 `/var/log/mysqld.log` 文件中。使用 grep 命令找到日志中的密码。
+
+```bash
+shell> grep 'temporary password' /var/log/mysqld.log
+```
+
+登录，修改密码
+
+> 默认密码检查策略要求密码必须包含：大小写字母、数字和特殊符号，并且长度不能少于8位。
+
+```bash
+shell> mysql -uroot -p
+mysql> ALTER USER 'root'@'localhost' IDENTIFIED BY '密码'; 
+```
+
+或者
+
+```mysql
+mysql> set password for 'root'@'localhost'=password('密码'); 
+```
+
+以后通过 update set 语句修改密码
+
+```mysql
+mysql> use mysql;
+mysql> update user set password=PASSWORD('密码') where user='root';
+mysql> flush privileges;
+```
+
+##### 添加远程登录用户
+
+添加一个允许远程连接的帐户
+
+```mysql
+mysql> GRANT ALL PRIVILEGES ON *.* TO '用户名'@'%' IDENTIFIED BY '密码' WITH GRANT OPTION;
+```
+
+~~修改 root 为允许远程连接~~（不推荐）
+
+```mysql
+mysql> use mysql;
+mysql> UPDATE user SET Host='%' WHERE User='root';
+mysql> flush privileges;
+```
+
+##### 设置默认编码为 utf8
+
+mysql 安装后默认不支持中文，需要修改编码。
+ 修改 `/etc/my.cnf` 配置文件，在相关节点（没有则自行添加）下添加编码配置，如下：
+
+```mysql
+[mysqld]
+character-set-server=utf8
+[client]
+default-character-set=utf8
+[mysql]
+default-character-set=utf8
+```
+
+重启mysql服务，查询编码。可以看到已经改过来了
+
+```dart
+shell> systemctl restart mysqld
+shell> mysql -uroot -p
+mysql> show variables like 'character%';
+```
+
+#### 6. mysql参数
+
+```
+命令：show status like '%下面变量%'; 
+Aborted_clients                由于客户没有正确关闭连接已经死掉，已经放弃的连接数量。 
+Aborted_connects            尝试已经失败的MySQL服务器的连接的次数。 
+Connections                     试图连接MySQL服务器的次数。 
+Created_tmp_tables          当执行语句时，已经被创造了的隐含临时表的数量。 
+Delayed_insert_threads     正在使用的延迟插入处理器线程的数量。 
+Delayed_writes                用INSERT DELAYED写入的行数。 
+Delayed_errors                用INSERT DELAYED写入的发生某些错误(可能重复键值)的行数。 
+Flush_commands            执行FLUSH命令的次数。 
+Handler_delete                 请求从一张表中删除行的次数。 
+Handler_read_first          请求读入表中第一行的次数。 
+Handler_read_key           请求数字基于键读行。 
+Handler_read_next           请求读入基于一个键的一行的次数。 
+Handler_read_rnd           请求读入基于一个固定位置的一行的次数。 
+Handler_update              请求更新表中一行的次数。 
+Handler_write                 请求向表中插入一行的次数。 
+Key_blocks_used            用于关键字缓存的块的数量。 
+Key_read_requests         请求从缓存读入一个键值的次数。 
+Key_reads                      从磁盘物理读入一个键值的次数。 
+Key_write_requests         请求将一个关键字块写入缓存次数。 
+Key_writes                      将一个键值块物理写入磁盘的次数。 
+Max_used_connections    同时使用的连接的最大数目。 
+Not_flushed_key_blocks   在键缓存中已经改变但是还没被清空到磁盘上的键块。 
+Not_flushed_delayed_rows      在INSERT DELAY队列中等待写入的行的数量。 
+Open_tables                  打开表的数量。 
+Open_files                     打开文件的数量。 
+Open_streams               打开流的数量(主要用于日志记载） 
+Opened_tables              已经打开的表的数量。 
+Questions                     发往服务器的查询的数量。 
+Slow_queries                要花超过long_query_time时间的查询数量。 
+Threads_connected       当前打开的连接的数量。 
+Threads_running          不在睡眠的线程数量。 
+Uptime                        服务器工作了多少秒。
+```
+
+
+
+
+
 
 
 
@@ -1153,13 +1310,13 @@ sudo /etc/init.d/redisd restart  	# 重启
 ##### 下载Redis
 
 ```shell
-curl https://download.redis.io/releases/redis-5.0.0.tar.gz
+curl https://download.redis.io/releases/redis-5.0.7.tar.gz
 ```
 
 ##### 解压文件
 
 ```shell
-tar -zxvf redis-5.0.0.tar.gz -C /usr/local
+tar -zxvf redis-5.0.7.tar.gz -C /usr/local
 ```
 
 ##### 安装 make 和 gcc
@@ -1200,6 +1357,7 @@ nameserver 8.8.8.8
 ##### 编译Redis
 
 ```shell
+cd /usr/local
 cd redis-5.0.0/
 make
 cd src
@@ -1221,56 +1379,25 @@ make MALLOC=libc
 
 ##### 配置Redis服务
 
-***配置`.conf`文件***
+##### 修改redis.conf文件
 
 ```shell
-mkdir /etc/redis/
-cp /usr/local/redis-5.0.7/redis.conf /etc/redis/6379.conf
-vim /etc/redis/6379.conf
-```
-
-***修改`6379.conf`文件***
-
-```
-...
-bind 0.0.0.0
-...
-protected-mode no
-...
 daemonize yes
-...
-logfile /var/log/redis/redis.log
-...
-dir /var/lib/redis/
-...
-# replicaof <masterip> <masterport>
-replivaof xxx.xxx.xxx.xxx 6379   # 作为从服务器时,主服务器的IP与端口
-# masterauth <master-password>
-masterauth password          # 作为从服务器时,主服务器启用redis权限认证设置的密码
-...
-# requirepass foobared
-requirepass password         # 启用redis权限认证,设置的密码
-
+#bind 127.0.0.1
+protected-mode no
+requirepass # 密码   建议不要设置
 ```
+
+
 
 ##### 配置 Redis 启动脚本
 
 ```shell
+# 将/root/redis-5.0.7/redis.conf文件复制一份到/etc/redis目录下，并命名为6379.conf　  不拷贝的话启动不成功，启动时回去找这个文件，不知道为啥
+cp /usr/local/redis-5.0.7/redis.conf /etc/redis/6379.conf
+# 将redis的启动脚本复制一份放到/etc/init.d目录下
 cp /usr/local/redis-5.0.7/utils/redis_init_script /etc/init.d/redisd
 chmod +x /etc/init.d/redisd
-```
-
-##### 初始化用户和日志路径
-
-建议为Redis单独建立一个用户，并新建db和日志文件夹
-
-```shell
-sudo useradd redis
-sudo mkdir -p /var/lib/redis/
-sudo mkdir -p /var/log/redis/
-sudo chown redis.redis /var/lib/redis/ 
-sudo chown redis.redis /var/log/redis/
-
 ```
 
 ##### 设置开机自动启动，关机自动关闭
@@ -1742,31 +1869,279 @@ DNS1=192.168.7.1 #DNS 配置 	可以不配
 
 
 
+## centos
+
+### 防火墙
+
+查看防火墙状态
+
+```shell
+firewall-cmd --state
+```
+
+停止firewall
+
+```shell
+systemctl stop firewalld.service
+```
+
+禁止firewall开机启动
+
+```shell
+systemctl disable firewalld.service 
+```
+
+开启防火墙：`systemctl start firewalld `
+
+关闭防火墙：`systemctl stop firewalld`
+
+开永久端口号： `firewall-cmd --add-port=666/tcp --permanent `    --permanent 表示永久生效
+
+重新载入配置：  `firewall-cmd --reload` 	重新载入配置后才能生效
+
+查看想开的端口是否已开： `firewall-cmd --query-port=666/tcp`
+
+查看已开放的端口： `firewall-cmd --zone=public --list-ports`
+
+##### 管理firewalld
+
+```shell
+# 设置开机启动服务
+systemctl enable firewalld.service
+# 设置开机禁用服务
+systemctl disable firewalld.service
+# 开启服务
+systemctl start firewalld.service 
+# 停止服务	
+systemctl stop firewalld.service
+# 查看firewalld状态
+systemctl status firewalld
+# 查看版本
+firewall-cmd --version
+# 查看帮助
+firewall-cmd --help
+# 显示状态
+firewall-cmd --state
+```
+
+##### zone管理
+
+```shell
+# 列出所有支持的zone
+firewall-cmd --get-zones
+# 查看当前的默认zone
+firewall-cmd --get-default-zone
+```
+
+##### service管理
+
+```shell
+# 分别列出所有支持的service
+firewall-cmd --get-services
+# 查看当前zone中加载的service
+firewall-cmd --list-services
+```
+
+##### 基本操作
+
+```shell
+# 查看所有打开的端口
+firewall-cmd --zone=public --list-ports
+# 更新防火墙规则
+firewall-cmd --reload
+# 查看区域信息
+firewall-cmd --get-active-zones
+# 查看指定接口所属区域
+firewall-cmd --get-zone-of-interface=eth0
+# 拒绝所有包
+firewall-cmd --panic-on
+# 取消拒绝状态
+firewall-cmd --panic-off
+# 查看是否拒绝
+firewall-cmd --query-panic
+```
+
+##### 添加端口
+
+```shell
+# 添加80端口
+firewall-cmd --zone=public --add-port=80/tcp --permanent  # --permanent永久生效，没有此参数，重启后失效
+# 重新载入	
+firewall-cmd--reload
+# 查看80端口
+firewall-cmd --zone=public --query-port=80/tcp
+# 删除80端口
+firewall-cmd --zone=public --remove-port=80/tcp --permanent
+# 为public区添加持久性的HTTP和HTTPS规则
+firewall-cmd --zone=public --add-service=http --permanent
+firewall0cmd --zone=public --add-service=https --permanent
+# 列出所有规则
+firewall-cmd -list-all
+```
 
 
 
+### 安装python
+
+#### 安装依赖包
+
+```shell
+sudo yum groupinstall "Development tools"
+yum install zlib-devel bzip2-devel openssl-devel ncurses-devel sqlite-devel readline-devel tk-devel gcc make
+
+-------------------------------------------------------------------
+#运行这个命令添加epel扩展源
+yum -y install epel-release
+
+#安装pip
+yum install python-pip
+```
+
+#### 下载.tgz压缩包
+
+- python包所在的位置：`https://www.python.org/ftp/python/`
+
+#### 编译python3源码包
+
+```shell
+tar xf Python-3.7.3.tgz
+cd Python-3.7.3
+
+#进入解压后的目录，依次执行下面命令进行手动编译
+./configure prefix=/usr/local/python3
+make && make install
+```
+
+#### 添加软链接
+
+```shell
+#将原来的链接备份
+mv /usr/bin/python /usr/bin/python.bak
+
+#添加python3的软链接
+ln -s /usr/local/python3/bin/python3.7 /usr/bin/python
+
+# 添加pip软连接
+ln -s /usr/local/python3/bin/pip3 /usr/bin/pip
+
+#测试是否安装成功了
+python -V
+
+```
+
+#### 更改yum配置，因为其要用到python2才能执行，否则会导致yum不能正常使用
+
+```shell
+vi /usr/bin/yum
+把#! /usr/bin/python修改为#! /usr/bin/python2
+
+vi /usr/libexec/urlgrabber-ext-down
+把#! /usr/bin/python 修改为#! /usr/bin/python2
+```
 
 
 
+### 虚拟环境
 
+#### 安装虚拟环境包
 
+```shell
+pip install virtulenv
+pip install --upgrade virtualenv	# 上一步失败可以用这个
 
+# virtualenvwrapper这个软件包可以让我们管理虚拟环境变得更加简单。不用再跑到某个目录下通过virtualenv来创建虚拟环境，并且激活的时候也要跑到具体的目录下去激活。
+pip3 install virtualenvwrapper
+```
 
+#### 设置环境变量
 
+##### 存放虚拟环境的文件夹
 
+创建一个文件夹，用于存放所有的虚拟环境：`mkdir -p /home/python/virtualenvs` (目录自定义)
 
+##### 编辑.bashrc文件
 
+```shell
 
+VIRTUALENVWRAPPER_PYTHON=/usr/local/python3/bin/python3	# 指定virtualenvwrapper执行的python版本
+export WORKON_HOME=/home/python/virtualenvs	# 指定虚拟环境存放目录
+source /usr/local/python3/bin/virtualenvwrapper.sh	# virtualenvwrapper.sh所在目录
+```
 
+#####  运行.bashrc文件
 
+```shell
+source ~/.bashrc
+```
 
+##### 操作
 
+```shell
+# 创建虚拟环境
+mkvirtualenv spider
+# 切换到某个虚拟环境
+workon spider
+# 退出当前虚拟环境
+deactivate
+# 删除某个虚拟环境
+rm virtualenv spider
+# 列出所有虚拟环境
+ls virtualenv
+# 进入到虚拟环境所在的目录
+cd virtualenv
 
+```
 
+### chrome+chromedriver
 
+#### 下载chrome
 
+```shell
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
+```
 
+#### 安装Chrome
 
+```html
+yum install ./google-chrome-stable_current_x86_64.rpm
+```
+
+#### 配置chromedriver
+
+注意chromedriver的版本，要与你安装的chrome版本对应上，这里的版本已经不是最新的。版本列表：http://chromedriver.chromium.org/downloads
+
+解压chromedriver_linux64.zip
+
+```html
+unzip chromedriver_linux64.zip
+```
+
+把chromedriver移动到系统目录
+
+```text
+mv chromedriver /usr/bin
+```
+
+为chromedriver授权
+
+```html
+chmod 755 chromedriver
+```
+
+设置无头
+
+```python 
+from selenium import webdriver   
+from selenium.webdriver.chrome.options import Options  # 导入浏览器内核设置，主要是为了设置无头（headless）模式
+url = 'https://www.baidu.com' 
+chrome_options = Options()    
+chrome_options.add_argument('--headless')  # 设置Chrome为无头模式   
+chrome_options.add_argument('--no-sandbox')   #这个命令禁止沙箱模式，否则肯能会报错遇到chrome异常
+chrome_options.add_argument('disable-dev-shm-usage')
+driver = webdriver.Chrome(options=chrome_options)    
+driver.get(url)    
+driver.close()
+```
 
 
 
