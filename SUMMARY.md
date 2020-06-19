@@ -1,6 +1,7 @@
 # Summary
 
 * [Introduction](README.md)
+* [索引](SUMMARY.md)
 * [Centos7.6](Centos7.6.md)
 * [docker(linux)](docker-linux.md)
 * [docker安装(windows)](docker安装-windows.md)
@@ -12,9 +13,7 @@
 * [numpy学习](numpy学习.md)
 * [pip相关](pip相关.md)
 * [python源码](python源码.md)
-* [README](README.md)
 * [selenium代理](selenium代理.md)
-* [SUMMARY](SUMMARY.md)
 * [svn使用](svn使用.md)
 * [vim操作](vim操作.md)
 * [vim的安装配置](vim的安装配置.md)
