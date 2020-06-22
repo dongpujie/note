@@ -1,0 +1,35 @@
+注：-->表示微信读书没有这些书
+《黑客与画家》（美）保罗·格雷厄姆，人民邮电出版社
+《专业主义》（日）大前研一，中信出版社
+《重来：更为简单有效的商业思维》（美）贾森·弗里德/（丹）戴维·海涅迈尔·汉森，中信出版社
+-->《精益创业》（美）埃里克·莱斯，中信出版社
+《编程之美：微软技术面试心得》《编程之美》小组，电子工业出版社
+-->《打造Facebook》王淮，印刷工业出版社
+-->《您就是极客：软件开发人员生存指南》（美）Michael Lopp，人民邮电出版社
+-->《代码整洁之道》（美）Robert C. Martin，人民邮电出版社
+《图解HTTP》（日）上野宣，人民邮电出版社
+-->《高性能网站建设进阶指南》（美）Steve Souders，电子工业出版社
+-->《网站性能监测与优化》（美）Alistair Croll/Sean Power，人民邮电出版社
+-->《精通CSS：高级Web标准解决方案（第2版）》（英）Andy Budd/SimonCollison/Cameron Moll，人民邮电出版社
+-->《单页Web应用：JavaScript从前端到后端》（美）Michael S.Mikowski/Josh C. Powell，人民邮电出版社
+-->《Getting Real》（美）Jason Fried/Heinemeier David Hansson/MatthewLinderman,37signals
+《从0到1：开启商业与未来的秘密》（美）彼得·蒂尔、布莱克·马斯特斯，中信出版社
+-->《Building iPhone Apps with HTML, CSS, and JavaScript》（美）Jonathan Stark, O'Reilly Media
+-->《Pro Git book》（美）Scott Chacon/Ben Straub, Apress
+-->《Git版本控制管理》（美）Jon Loeliger/ Matthew McCullough，人民邮电出版社
+-->《代码大全》（美）Steve McConnell，电子工业出版社
+-->《代码的未来》（日）松本行弘，人民邮电出版社
+-->《禅与摩托车维修艺术》（美）罗伯特·M．波西格，重庆出版社
+-->《鸟哥的Linux私房菜．基础学习篇》鸟哥，人民邮电出版社
+-->《只是为了好玩：Linux之父林纳斯自传》（美）Linus Torvalds、DavidDiamond，人民邮电出版社
+-->《设计模式：可复用面向对象软件的基础》（美）Erich Gamma/RichardHelm/Ralph Johnson/John Vlissides，机械工业出版社
+-->《JavaScript设计模式》（美）Addy Osmani，人民邮电出版社
+-->《软件随想录：程序员部落酋长Joel谈软件》（美）Joel Spolsky，人民邮电出版社
+-->《卓有成效的程序员》（美）Neal Ford，机械工业出版社
+-->《响应式Web设计全流程解析》（美）Stephen Hay，人民邮电出版社
+《写给大家看的设计书（第3版）》（美）Robin Williams，人民邮电出版社 
+-->《写给大家看的设计书：实例与创意》（美）Robin Williams，人民邮电出版社
+《卓有成效的管理者》（美）彼得·德鲁克，机械工业出版社
+《麦肯锡教我的写作武器》（日）高杉尚孝，北京联合出版公司·后浪出版公司
+-->《金字塔原理》（美）巴巴拉·明托，民主与建设出版社
+《安静：内向性格的竞争力》（美）苏珊·凯恩，中信出版社
