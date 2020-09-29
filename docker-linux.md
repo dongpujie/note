@@ -153,18 +153,81 @@ $ sudo yum install docker-ce docker-ce-cli containerd.io
 
 启动Docker
 
-```
+```shell
 $ sudo systemctl start docker
 ```
 
 
 通过运行hello-world 映像来验证是否正确安装了Docker Engine 。
 
-```
+```shell
 $ sudo docker run hello-world
 ```
 
 ### 安装crawlab
 
+使用docker-compose
 
+```shell
+pip install docker-compose
+```
+
+在`docker-compose.yml`文件目录下使用`docker-compose ps`验证是否安装正常
+
+`docker-compose.yml` 文件内容
+
+```python
+version: '3.3'  # Docker Compose 的版本号（请看后续说明）
+services:  # 服务
+  master:  # 服务名称
+    image: tikazyq/crawlab:latest  # 服务对应的镜像名称
+    container_name: master  # 服务对应的容器名称
+    environment:  # 这里定义传入的环境变量
+      CRAWLAB_SERVER_MASTER: "Y"  # 是否为主节点，Y/N
+      CRAWLAB_MONGO_HOST: "mongo"  # MongoDB host，由于在 Docker Compose 里，可以引用服务名称
+      #CRAWLAB_REDIS_ADDRESS: "redis"  # Redis host，由于在 Docker Compose 里，可以引用服务名称
+      CRAWLAB_REDIS_ADDRESS: "192.168.0.240"  # Redis host，由于在 Docker Compose 里，可以引用服务名称
+      CRAWLAB_REDIS_PASSWORD: ""
+      #CRAWLAB_REDIS_DATABASE: "11"
+      CRAWLAB_REDIS_PORT: "6379"
+    ports:  # 映射的端口
+      - "9999:9999" # 前端端口
+    depends_on: # 依赖的服务
+      - mongo  # MongoDB
+      - chrome
+      #- redis  # Redis
+  worker:  # 工作节点，与主节点配置类似，不重复写了
+    image: tikazyq/crawlab:latest
+    container_name: worker
+    environment:
+      CRAWLAB_SERVER_MASTER: "N"
+      CRAWLAB_MONGO_HOST: "mongo"
+      CRAWLAB_REDIS_ADDRESS: "192.168.0.240"
+      #CRAWLAB_REDIS_ADDRESS: "redis"
+      CRAWLAB_REDIS_PASSWORD: ""
+      #CRAWLAB_REDIS_DATABASE: "11"
+      CRAWLAB_REDIS_PORT: "6379"
+    depends_on:
+      - mongo
+      - chrome
+      #- redis
+  mongo:  # MongoDB 服务名称
+    image: mongo:latest  # MongoDB 镜像名称
+    restart: always  # 重启策略为“总是”
+    ports:  # 映射端口
+      - "27017:27017"
+#  redis:  # Redis 服务名称
+#    image: redis:latest  # Redis 镜像名称
+#    restart: always  # 重启策略为“总是”
+#    ports:  # 映射端口
+#      - "6378:6378"
+  chrome:
+    image: selenium/standalone-chrome:latest
+    ports:
+      - "4444:4444"
+    shm_size: 1g
+        
+```
+
+`docker-compose up -d` 启动 crawlab
 

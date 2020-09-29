@@ -99,7 +99,7 @@ select host,user,authentication_string from user;
 创建用户
 
 ```mysql
-create user 'zdyg'@'%' identified by 'Zdyg0727!.';	# %表示所有主机都可连接
+create user 'zdyg'@'%' identified by 'z';	# %表示所有主机都可连接
 ```
 
 授予全部权限

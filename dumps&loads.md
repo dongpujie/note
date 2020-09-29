@@ -68,3 +68,43 @@ data = f.get('shopping')
 print(data)
 ```
 
+
+
+### demjson
+
+demjson 可以解決不正常的json格式数据
+
+```python
+# -*- coding: utf-8 -*-
+ 
+import demjson
+ 
+js_json = "{x:1, y:2, z:3}"
+ 
+py_json1 = "{'x':1, 'y':2, 'z':3}"
+ 
+py_json2 = '{"x":1, "y":2, "z":3}'
+ 
+data = demjson.decode(js_json)
+print(data)
+# {'y': 2, 'x': 1, 'z': 3}
+ 
+data = demjson.decode(py_json1)
+print(data)
+# {'y': 2, 'x': 1, 'z': 3}
+ 
+data = demjson.decode(py_json2)
+print(data)
+# {'y': 2, 'x': 1, 'z': 3}
+
+```
+
+
+
+#### demjson 的常用的两个方法， 一个是 encode， 一个是 decode
+
+|        |                                          |
+| ------ | ---------------------------------------- |
+| encode | 将 Python 对象编码成 JSON 字符串         |
+| decode | 将已编码的 JSON 字符串解码为 Python 对象 |
+
